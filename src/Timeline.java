@@ -1,17 +1,19 @@
+import java.util.List;
+
 /**
  * The Timeline class uses SimpleLinkedList to build a time ordered list of 
  * following tweets. Tweets with smaller Time fields should come earlier in the list.
  */
 class Timeline{
 
-    private SimpleLinkedList<Tweet> list;
+	private SimpleLinkedList<Tweet> timeLine;
 
     /**
      * Constructs an empty timeline
      */
     public Timeline()
     {
-    	SimpleLinkedList timeLine = new SimpleLinkedList<Tweet>();
+    	timeLine = new SimpleLinkedList<Tweet>();
     }
 
     /**
@@ -21,14 +23,68 @@ class Timeline{
      */
     public void add(Tweet tweet)
     {
-    	timeLine.add(tweet);
+    	if (timeLine.isEmpty())
+    		timeLine.add(tweet);
+    	else if (timeLine.size() == 1)
+    		{
+    		if (tweet.getTime() > timeLine.get(0).getTime())
+    			timeLine.add(tweet);
+    		else
+    			timeLine.add(0, tweet);
+    		}
+    	else if (tweet.getTime() > timeLine.get(timeLine.size()-1).getTime())
+    		timeLine.add(tweet);
+    	else
+    	{
+    		int low = 0;
+    		int high = timeLine.size() - 1;
+    	
+    		while (high >= low)
+    			{
+					if (tweet.getTime() > timeLine.get(high/2).getTime()
+						&& tweet.getTime() < timeLine.get(high/2 + 1).getTime())
+					{
+					timeLine.add(high/2 + 1, tweet);
+					break;
+					}
+    				if (tweet.getTime() > timeLine.get(high/2).getTime())
+    					low = high/2;
+    				if (tweet.getTime() < timeLine.get(high/2).getTime())
+    					high = high/2;
+    			}
+    	}
     }
 
     /**
      * Adds an ordered list of tweets to the Timeline
      * @param tweets the list of tweets to add
      */
-    public void add(List<Tweet> tweets){
+    public void add(List<Tweet> tweets)
+    {
+    	if (tweets.isEmpty())
+    		throw new IllegalArgumentException("Empty List");
+    	for (int i = 0; i < tweets.size(); i++)
+    	if (timeLine.isEmpty())
+    		timeLine.add(tweets.get(i));
+    	else
+    	{
+    		int low = 0;
+    		int high = timeLine.size() - 1;
+    		while (high > low)
+    			{
+					if (tweets.get(i).getTime() > timeLine.get(high/2).getTime()
+						&& tweets.get(i).getTime() < timeLine.get(high/2 + 1).getTime())
+					{
+					timeLine.add(high/2 + 1, tweets.get(i));
+					break;
+					}
+    				if (tweets.get(i).getTime() > timeLine.get(high/2).getTime())
+    					low = high/2;
+    				if (tweets.get(i).getTime() < timeLine.get(high/2).getTime())
+    					high = high/2;
+    			}
+    	}
+    	
     }
 
     /**
@@ -51,7 +107,12 @@ class Timeline{
     /**
      * Print each tweet in the timeline
      */
-    public void print(){
+    public void print()
+    {
+    	String results = "";
+    	for(int i = 0; i < timeLine.size(); i++)
+    		results = timeLine.get(i).print();
+    	
     }   
     
     /**
@@ -61,5 +122,5 @@ class Timeline{
      */
     public void print(int time){
     }
-    private SimpleLinkedList<Tweet> timeLine;
+
 }

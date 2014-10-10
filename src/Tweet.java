@@ -54,7 +54,7 @@ class Tweet{
      */
     public void print()
     {
-    	System.out.println(getTime() + " " + getUser() + ": " + getMessage());
+    	System.out.println(getTime() + " " + getUser() + ":" + getMessage());
     }
     private int timeStamp;
     private String message;
