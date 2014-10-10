@@ -24,10 +24,10 @@ public class SimpleLinkedList<E> implements ListADT<E>
         }
         else
         {
-        	//set new node prev to old end
-        tail.setNext(newnode);
-        tail = newnode;
-        numItems++;
+        	newnode.setPrev(tail);
+        	tail.setNext(newnode);
+        	tail = newnode;
+        	numItems++;
         }
 	}
 	public void add(int pos, E item)
@@ -36,9 +36,18 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		if (pos > numItems || simpleList == null) 
 			throw new IllegalArgumentException();
 		DblListnode<E> curr = simpleList;
-		for (int i = 0; i < pos - 1; i++)
-			curr.getNext();
+		if (pos - 1 < 0)
+		{
+			curr.getNext().setPrev(new DblListnode<E>(item));
+			curr.setNext(new DblListnode<E>(item));
+		}
+		else
+		{
+		for (int i = 0; i < pos-1; i++)
+			curr = curr.getNext();
+		curr.getNext().setPrev(new DblListnode<E>(item));
 		curr.setNext(new DblListnode<E>(item));
+		}
 		
 	}
 	public boolean contains(E item)
@@ -75,8 +84,29 @@ public class SimpleLinkedList<E> implements ListADT<E>
 			throw new IllegalArgumentException();
 		String result = (String) get(pos);
 		DblListnode<E> curr = simpleList;
-		for (int i = 0; i < pos; i++)
+		//If the item is at the beginning of the chain
+		if (pos - 1 < 0)
+		{
+			curr.getNext().setPrev(null);
+			curr.setNext(curr.getNext());
+		}
+		//goes to the position in the chain to remove the item
+		for (int i = 0; i < pos - 1; i++)
 			curr = curr.getNext();
+		//if the item to be removed is at the end of the chain
+		if(pos == numItems - 1)
+		{
+			tail.setPrev(tail.getPrev());
+			curr.setNext(null);
+		}
+		//if the item is 1 before the end of the chain
+		else if(pos == numItems - 2)
+		{
+			tail.setPrev(tail.getPrev().getPrev());
+			curr.setNext(curr.getNext().getNext());
+		}
+		//all other cases
+		else
 		curr.setNext(curr.getNext().getNext());
 		return (E) result;
 	}

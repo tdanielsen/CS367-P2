@@ -9,7 +9,7 @@ public class TweeterTester {
 		test.add((E) "cat");
 		test.add((E) "matt");
 		System.out.println(test.get(2));
-		System.out.println(test.remove(1));
+		System.out.println(test.remove(2));
 		test.add(1, (E) "tweet");
 		System.out.println(test.get(1));
 		System.out.println(test.isEmpty());
