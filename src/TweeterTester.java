@@ -2,7 +2,7 @@
 public class TweeterTester {
 
 	@SuppressWarnings("unchecked")
-	public static <E> void main(String[] args) 
+	public static <E> void main(String[] args) throws TweetTooLongException 
 	{
 		SimpleLinkedList<E> test = new SimpleLinkedList<E>();
 		test.add((E) "hat");
@@ -13,6 +13,8 @@ public class TweeterTester {
 		test.add(1, (E) "tweet");
 		System.out.println(test.get(1));
 		System.out.println(test.isEmpty());
+		Tweet tweet = new Tweet(1, "Hello World", "Peter");
+		tweet.print();
 
 	}
 
