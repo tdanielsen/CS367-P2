@@ -9,7 +9,9 @@ class Timeline{
     /**
      * Constructs an empty timeline
      */
-    public Timeline(){
+    public Timeline()
+    {
+    	SimpleLinkedList timeLine = new SimpleLinkedList<Tweet>();
     }
 
     /**
@@ -17,7 +19,9 @@ class Timeline{
      * 
      * @param tweet the tweet to add
      */
-    public void add(Tweet tweet){
+    public void add(Tweet tweet)
+    {
+    	timeLine.add(tweet);
     }
 
     /**
@@ -57,4 +61,5 @@ class Timeline{
      */
     public void print(int time){
     }
+    private SimpleLinkedList<Tweet> timeLine;
 }
