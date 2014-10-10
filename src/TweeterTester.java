@@ -1,15 +1,16 @@
 
 public class TweeterTester {
 
+	@SuppressWarnings("unchecked")
 	public static <E> void main(String[] args) 
 	{
 		SimpleLinkedList<E> test = new SimpleLinkedList<E>();
-		test.add("hat");
-		test.add("cat");
-		test.add("matt");
+		test.add((E) "hat");
+		test.add((E) "cat");
+		test.add((E) "matt");
 		System.out.println(test.get(2));
-		test.remove(1);
-		test.add(1, "tweet");
+		System.out.println(test.remove(1));
+		test.add(1, (E) "tweet");
 		System.out.println(test.get(1));
 		System.out.println(test.isEmpty());
 

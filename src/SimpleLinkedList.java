@@ -1,5 +1,5 @@
 
-public class SimpleLinkedList<E> implements ListADT
+public class SimpleLinkedList<E> implements ListADT<E>
 {
 	private DblListnode<E> simpleList;
 	private DblListnode<E> tail;
@@ -12,31 +12,36 @@ public class SimpleLinkedList<E> implements ListADT
 		numItems = 0;
 		
 	}
-	public void add(Object item)
+	public void add(E item)
 	{
-        DblListnode<E> newnode = new DblListnode(item);
+        DblListnode<E> newnode = new DblListnode<E>(item);
         //Special Case: empty list
-        if (simpleList == null) {
+        if (simpleList == null) 
+        {
           simpleList = newnode;
           tail = newnode;
           numItems++;
         }
+        else
+        {
+        	//set new node prev to old end
         tail.setNext(newnode);
         tail = newnode;
         numItems++;
+        }
 	}
-	public void add(int pos, Object item)
+	public void add(int pos, E item)
 	{
 		//check for valid input
 		if (pos > numItems || simpleList == null) 
 			throw new IllegalArgumentException();
 		DblListnode<E> curr = simpleList;
-		for (int i = 0; i < pos; i++)
+		for (int i = 0; i < pos - 1; i++)
 			curr.getNext();
-		curr.setNext(new DblListnode(item));
+		curr.setNext(new DblListnode<E>(item));
 		
 	}
-	public boolean contains(Object item)
+	public boolean contains(E item)
 	{
 		DblListnode<E> curr = simpleList;
 		for (int i = 0; i < numItems; i++)
@@ -47,14 +52,14 @@ public class SimpleLinkedList<E> implements ListADT
 		}
 		return false;
 	}
-	public Object get(int pos)
+	public E get(int pos)
 	{
 		//check for valid input
 		if (pos > numItems || simpleList == null) 
 			throw new IllegalArgumentException();
 		DblListnode<E> curr = simpleList;
 		for (int i = 0; i < pos; i++)
-			curr.getNext();
+			curr = curr.getNext();
 		return curr.getData();
 	}
 	public boolean isEmpty() 
@@ -63,7 +68,7 @@ public class SimpleLinkedList<E> implements ListADT
 			return true;
 		return false;
 	}
-	public Object remove(int pos)
+	public E remove(int pos)
 	{
 		//check for valid input
 		if (pos > numItems || simpleList == null) 
@@ -71,9 +76,9 @@ public class SimpleLinkedList<E> implements ListADT
 		String result = (String) get(pos);
 		DblListnode<E> curr = simpleList;
 		for (int i = 0; i < pos; i++)
-			curr.getNext();
+			curr = curr.getNext();
 		curr.setNext(curr.getNext().getNext());
-		return result;
+		return (E) result;
 	}
 	public int size()
 	{
