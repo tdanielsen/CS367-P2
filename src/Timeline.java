@@ -64,26 +64,26 @@ class Timeline{
     	if (tweets.isEmpty())
     		throw new IllegalArgumentException("Empty List");
     	for (int i = 0; i < tweets.size(); i++)
-    	if (timeLine.isEmpty())
-    		timeLine.add(tweets.get(i));
-    	else
-    	{
-    		int low = 0;
-    		int high = timeLine.size() - 1;
-    		while (high > low)
-    			{
-					if (tweets.get(i).getTime() > timeLine.get(high/2).getTime()
-						&& tweets.get(i).getTime() < timeLine.get(high/2 + 1).getTime())
-					{
-					timeLine.add(high/2 + 1, tweets.get(i));
-					break;
-					}
-    				if (tweets.get(i).getTime() > timeLine.get(high/2).getTime())
-    					low = high/2;
-    				if (tweets.get(i).getTime() < timeLine.get(high/2).getTime())
-    					high = high/2;
-    			}
-    	}
+    		if (timeLine.isEmpty())
+    			timeLine.add(tweets.get(i));
+    		else
+    		{
+	    		int low = 0;
+	    		int high = timeLine.size() - 1;
+	    		while (high > low)
+	    			{
+						if (tweets.get(i).getTime() > timeLine.get(high/2).getTime()
+							&& tweets.get(i).getTime() < timeLine.get(high/2 + 1).getTime())
+						{
+							timeLine.add(high/2 + 1, tweets.get(i));
+							break;
+						}
+	    				if (tweets.get(i).getTime() > timeLine.get(high/2).getTime())
+	    					low = high/2;
+	    				if (tweets.get(i).getTime() < timeLine.get(high/2).getTime())
+	    					high = high/2;
+	    			}
+	    	}
     	
     }
 
@@ -101,7 +101,11 @@ class Timeline{
      * @param keyword the keyword to search for
      * @return a Timeline of tweets containing keyword
      */
-    public Timeline search(String keyword){
+    public Timeline search(String keyword)
+    {
+    	Timeline searchingLine = new Timeline();
+    	
+    	return searchingLine;
     }
 
     /**
@@ -109,9 +113,8 @@ class Timeline{
      */
     public void print()
     {
-    	String results = "";
     	for(int i = 0; i < timeLine.size(); i++)
-    		results = timeLine.get(i).print();
+    		timeLine.get(i).print();
     	
     }   
     
@@ -120,7 +123,15 @@ class Timeline{
      * 
      * @param time the largest time to print tweets
      */
-    public void print(int time){
+    public void print(int time)
+    {
+    	int i = 0;
+    	while (timeLine.get(i).getTime() < time)
+    	{
+    		timeLine.get(i).print();
+    		i++;
+    	}
+		
     }
 
 }

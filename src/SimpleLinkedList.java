@@ -36,17 +36,23 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		if (pos > numItems || simpleList == null) 
 			throw new IllegalArgumentException();
 		DblListnode<E> curr = simpleList;
+		DblListnode<E> newItem = new DblListnode<E>(item);
 		if (pos - 1 < 0)
 		{
-			curr.getNext().setPrev(new DblListnode<E>(item));
-			curr.setNext(new DblListnode<E>(item));
+			curr.getNext().setPrev(newItem);
+			curr.setNext(newItem);
+			numItems++;
 		}
 		else
 		{
 		for (int i = 0; i < pos-1; i++)
 			curr = curr.getNext();
-		curr.getNext().setPrev(new DblListnode<E>(item));
-		curr.setNext(new DblListnode<E>(item));
+		newItem.setPrev(curr);
+		newItem.setNext(curr.getNext());
+		curr.setNext(newItem);
+		if (pos - 1 == numItems)
+			tail.setPrev(newItem);
+		numItems++;
 		}
 		
 	}
@@ -89,6 +95,7 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		{
 			curr.getNext().setPrev(null);
 			curr.setNext(curr.getNext());
+			numItems--;
 		}
 		//goes to the position in the chain to remove the item
 		for (int i = 0; i < pos - 1; i++)
@@ -98,16 +105,19 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		{
 			tail.setPrev(tail.getPrev());
 			curr.setNext(null);
+			numItems--;
 		}
 		//if the item is 1 before the end of the chain
 		else if(pos == numItems - 2)
 		{
 			tail.setPrev(tail.getPrev().getPrev());
 			curr.setNext(curr.getNext().getNext());
+			numItems--;
 		}
 		//all other cases
 		else
 		curr.setNext(curr.getNext().getNext());
+		numItems--;
 		return (E) result;
 	}
 	public int size()
