@@ -15,15 +15,15 @@ public class  Twitter{
 
         // TODO *** steps 1 - 3 of the main method ***
     	Timeline timeLine = new Timeline();
-    	Tweet tweet = new Tweet(1, "Hello World", "Peter");
-		Tweet tweet2 = new Tweet(2, "Helo World", "Jon");
-		Tweet tweet3 = new Tweet(4, "Hell World", "Zac");
-		Tweet tweet4 = new Tweet(5, "Hello World", "Tim");
-		timeLine.add(tweet);
-		timeLine.add(tweet2);
-		timeLine.add(tweet3);
-		timeLine.add(new Tweet(6, "Yup", "Zork"));
-		timeLine.add(tweet4);
+//    	Tweet tweet = new Tweet(1, "Hello World", "Peter");
+//		Tweet tweet2 = new Tweet(2, "Helo World", "Jon");
+//		Tweet tweet3 = new Tweet(4, "Hell World", "Zac");
+//		Tweet tweet4 = new Tweet(5, "Hello World", "Tim");
+//		timeLine.add(tweet);
+//		timeLine.add(tweet2);
+//		timeLine.add(tweet3);
+//		timeLine.add(new Tweet(6, "Yup", "Zork"));
+//		timeLine.add(tweet4);
     	Scanner stdin = new Scanner(System.in);  //for console input
 
         boolean done = false;

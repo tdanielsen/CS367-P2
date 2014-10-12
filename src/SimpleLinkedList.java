@@ -39,9 +39,9 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		DblListnode<E> newItem = new DblListnode<E>(item);
 		if (pos == 0)
 		{
-			curr.setPrev(newItem);
-			newItem.setNext(curr);
-			curr = newItem;
+			simpleList.setPrev(newItem);
+			newItem.setNext(simpleList);
+			simpleList = newItem;
 			numItems++;
 		}
 		else
