@@ -9,7 +9,7 @@ public class TweeterTester {
 		test.add((E) "cat");
 		test.add((E) "matt");
 		//System.out.println(test.get(2));
-		//System.out.println(test.remove(2));
+		System.out.println(test.remove(2));
 		test.add(1, (E) "tweet");
 		test.add(2, (E) "t");
 		System.out.println(test.get(0));
@@ -31,7 +31,8 @@ public class TweeterTester {
 		tl.remove("Jap");
 		tl.print();
 		//tl.print(3);
-		//tl.search("Hello").print();
+		tl.search("Hello").print();
+		
 
 	}
 
