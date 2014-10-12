@@ -37,15 +37,16 @@ public class SimpleLinkedList<E> implements ListADT<E>
 			throw new IllegalArgumentException();
 		DblListnode<E> curr = simpleList;
 		DblListnode<E> newItem = new DblListnode<E>(item);
-		if (pos - 1 < 0)
+		if (pos == 0)
 		{
-			curr.getNext().setPrev(newItem);
-			curr.setNext(newItem);
+			curr.setPrev(newItem);
+			newItem.setNext(curr);
+			curr = newItem;
 			numItems++;
 		}
 		else
 		{
-		for (int i = 0; i < pos-1; i++)
+		for (int i = 0; i < pos - 1; i++)
 			curr = curr.getNext();
 		newItem.setPrev(curr);
 		newItem.setNext(curr.getNext());
@@ -88,7 +89,7 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		//check for valid input
 		if (pos > numItems || simpleList == null) 
 			throw new IllegalArgumentException();
-		String result = (String) get(pos);
+		E result =  get(pos);
 		DblListnode<E> curr = simpleList;
 		//If the item is at the beginning of the chain
 		if (pos - 1 < 0)
@@ -118,7 +119,7 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		else
 		curr.setNext(curr.getNext().getNext());
 		numItems--;
-		return (E) result;
+		return result;
 	}
 	public int size()
 	{

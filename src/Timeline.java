@@ -92,7 +92,13 @@ class Timeline{
      * 
      * @param user the user whose tweets should be removed
      */
-    public void remove(String user){
+    public void remove(String user)
+    {
+    	for(int i = 0; i < timeLine.size(); i++)
+    	{
+    		if (timeLine.get(i).getUser().contains(user))
+    			timeLine.remove(i);
+    	}
     }
 
     /**
@@ -104,6 +110,11 @@ class Timeline{
     public Timeline search(String keyword)
     {
     	Timeline searchingLine = new Timeline();
+    	for(int i = 0; i < timeLine.size(); i++)
+    	{
+    		if (timeLine.get(i).getMessage().contains(keyword))
+    			searchingLine.add(timeLine.get(i));
+    	}
     	
     	return searchingLine;
     }
