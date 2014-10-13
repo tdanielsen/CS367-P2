@@ -91,25 +91,59 @@ public class  Twitter{
 		                	}
                         break;
                     case "follow":
+                    	boolean check = false;
+                    	for (int i = 0; i < allUsersTweets.size(); i++)
+                    	{
+                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
+                    				check = true;
+                    	}
+                    	if (!check)
+                    	{
+                			System.out.println("Invalid User");
+                			break;
+                    	}
+                    	for(int j = 0; j < following.size(); j++)
+                    		if (commands[1].equals(following.get(j)))
+                    		{
+                    			System.out.println("Warning: User already followed");
+                    			break;
+                    		}
+                    		else
+		                    	for (int i = 0; i < allUsersTweets.size(); i++)
+		                    	{
+		                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
+		                    				timeLine.add(allUsersTweets.get(i));
+		                    		else
+		                    			System.out.println("Invalid User");
+		                    	}
                         break;
                     case "unfollow":
-                    	if (commands[1].equals(""))
-                    		System.out.println("Invalid User");
+                    	check = false;
+                    	for (int i = 0; i < allUsersTweets.size(); i++)
+                    	{
+                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
+                    				check = true;
+                    	}
+                    	if (!check)
+                    	{
+                			System.out.println("Invalid User");
+                			break;
+                    	}
                     	timeLine.remove(commands[1]);
-                    	int intialSize = following.size();
-                    	for(int i = 0; i < following.size(); i++)
+                    	int initialSize = following.size();
+                    	int i = 0;
+                    	for(i = 0; i < following.size(); i++)
                     	{
                     		if(following.get(i).contains(commands[1]))
                     		{
                     			following.remove(i);
-                    			break;
-                    		}
-                    		if(following.size() < intialSize)
-                    		{
-                    			System.out.println("Warning: User not followed");
-                    			break;
                     		}
                     	}
+                    	if(following.size() == initialSize)
+                		{
+                			System.out.println("Warning: User not followed");
+                			break;
+                		}
                         break;
                     case "search":
                     	timeLine.search(commands[1]).print();

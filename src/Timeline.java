@@ -42,20 +42,20 @@ class Timeline{
     		int high = timeLine.size() - 1;
     		int tweetTime = tweet.getTime();
     	
-    		while (high >= low)
+    		while (high > low)
     			{
     				int midpoint = (high-low)/2 + low;
     				int midpointTime = timeLine.get(midpoint).getTime();
 					if (tweetTime > midpointTime
 						&& tweetTime < timeLine.get(midpoint+1).getTime())
 					{
-					timeLine.add(midpoint + 1, tweet);
-					break;
+						timeLine.add(midpoint + 1, tweet);
+						break;
 					}
     				if (tweetTime > midpointTime)
-    					low = (high-low)/2 + low;
+    					low = midpoint;
     				if (tweetTime < midpointTime)
-    					high = (high-low)/2 + low;
+    					high = midpoint;
     			}
     	}
     }
@@ -66,30 +66,8 @@ class Timeline{
      */
     public void add(List<Tweet> tweets)
     {
-    	if (tweets.isEmpty())
-    		throw new IllegalArgumentException("Empty List");
     	for (int i = 0; i < tweets.size(); i++)
-    		if (timeLine.isEmpty())
-    			timeLine.add(tweets.get(i));
-    		else
-    		{
-	    		int low = 0;
-	    		int high = timeLine.size() - 1;
-	    		while (high > low)
-	    			{
-						if (tweets.get(i).getTime() > timeLine.get(high/2).getTime()
-							&& tweets.get(i).getTime() < timeLine.get(high/2 + 1).getTime())
-						{
-							timeLine.add(high/2 + 1, tweets.get(i));
-							break;
-						}
-	    				if (tweets.get(i).getTime() > timeLine.get(high/2).getTime())
-	    					low = high/2;
-	    				if (tweets.get(i).getTime() < timeLine.get(high/2).getTime())
-	    					high = high/2;
-	    			}
-	    	}
-    	
+    		add(tweets.get(i));
     }
 
     /**
@@ -117,7 +95,7 @@ class Timeline{
     	Timeline searchingLine = new Timeline();
     	for(int i = 0; i < timeLine.size(); i++)
     	{
-    		if (timeLine.get(i).getMessage().equals(keyword))
+    		if (timeLine.get(i).getMessage().contains(keyword))
     			searchingLine.add(timeLine.get(i));
     	}
     	
@@ -131,7 +109,6 @@ class Timeline{
     {
     	for(int i = 0; i < timeLine.size(); i++)
     		timeLine.get(i).print();
-    	
     }   
     
     /**
