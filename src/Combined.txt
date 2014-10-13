@@ -1,0 +1,39 @@
+23:java exceptions so fun to handle
+1:Hello, Worlds
+8:So excited for #internationalCoffeeDay
+10:Iterators... why did it have to be iterators
+15:NO ECLIPSE I DO NOT WANT TO RUN AS AN ANT PROJECT
+29:how much grades could a TA grade if a TA could grade grades
+32:java file I/O why u so unintuitive??
+39:If each linked list node also has a pointer to a random node, how long does search take #InterviewQs
+41:xkcd.com/1426
+43:I wonder how actual Twitter works...
+48:So wait, the movie was about his sled???
+54:LAB HOURS ARE YOUR FRIEND
+57:APPLE WATCH!!!
+2:so happy, it compiles
+5:"I'm sorry, Dave. I'm afraid I can't do that"
+18:rm -rf / #badLinuxCommands
+38:Uncommented code is the worst code
+40:need to draw these linked list operations out tbh
+44:breaking bead #firstDraftTVShows
+46:I have plenty of time to figure this project out #famousLastWords
+49:This linked list thing seems like a lot of work...
+50:Java monitors... smh
+60:This project seems like Uber but for linked lists...
+62:Hello, fake twitter
+4:This project is taking longer than I thought
+7:#javafail
+10:THIS TWEET IS TOO LONG, THIS TWEET IS TOO LONG, FIGURE OUT HOW TO DROP ME, THIS TWEET IS TOO LONG; WRITE THE EXCEPTION, CATCH SAID EXCEPTION, THIS TWEET IS WAY WAY TOO LONG
+12:This is why i prefer python #dynamicTyping
+16:javas enhanced for loops tho
+20:Stacks on Stacks on Stacks
+25:hash tables are people too
+33:plz dont lose again, packers
+37:Sandal #firstDraftTVShows
+42:RT @FinallyMario Man utd...LOL
+47:4.7 GB is a lot of free space to need on a 16 GB phone, IOS 8, even if it is temporary
+51:11 better than 10 imo #doctorWho
+53:The cross compatability thing is pretty ok i guess #java
+59:GAME DAY TRAFFIC WHY U GET IN THE WAY OF MY BRUNCH
+61:Save your TA some brain cells, use proper commenting and formatting

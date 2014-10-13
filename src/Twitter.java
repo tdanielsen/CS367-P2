@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 public class  Twitter{
 
-    public static void main(String[] args) throws TweetTooLongException, NumberFormatException, IOException {
+    public static void main(String[] args) throws TweetTooLongException, IOException {
 
         // TODO *** steps 1 - 3 of the main method ***
     	Timeline timeLine = new Timeline();
@@ -33,23 +33,33 @@ public class  Twitter{
 			List<Tweet> individualTweets = new ArrayList<Tweet>();
 			String fileName = args[i];
 			String userName = fileName.substring(0, fileName.indexOf('.'));
+			//System.out.println(userName);
 			following.add(userName);
 			BufferedReader in
-			   = new BufferedReader(new FileReader(args[i]));
-			String line = "";
-				
+			   = new BufferedReader(new FileReader(fileName));
+			String line;
+
 					while((line = in.readLine()) != null)
 					{
-						int time = 0;
-						String message = "";
-						int cutPoint = in.readLine().indexOf(':');
-						time = Integer.parseInt(in.readLine().substring(0, cutPoint));
-						message = in.readLine().substring(cutPoint - 1);
-						Tweet newTweet = new Tweet(time, message, userName);
-						individualTweets.add(newTweet);
-						timeLine.add(newTweet);
+						int cutPoint = line.indexOf(":");
+						int time = Integer.parseInt(line.substring(0, cutPoint));
+						String message = line.substring(cutPoint + 1);
+						//System.out.println(message);
+						try
+						{
+							Tweet newTweet = new Tweet(time, message, userName);
+							//newTweet.print();
+							individualTweets.add(newTweet);
+							timeLine.add(newTweet);
+						}
+						catch (TweetTooLongException e)
+						{
+							//Ignoring bad tweet
+						}
 					}
-
+				
+			in.close();
+			//timeLine.print();
 			allUsersTweets.add(individualTweets);
 		}
 		//fileReader
@@ -69,23 +79,36 @@ public class  Twitter{
                 String[] commands = input.split(" ");//split on space
                 switch(commands[0]){
                     case "list":
-                    	if (following.isEmpty())
-                    		System.out.println("Invaild way to input files, Tim");
-                    	for(int i = 0; i < following.size(); i++)
-                    	{
-                    		System.out.println(following.get(i));
-                    	}
+                    	if(commands.length <= 1)
+                    		System.out.println("Invalid Command");
+                    	else if(commands[1].equals("users"))
+                    		for(int i = 0; i < allUsersTweets.size(); i++)
+                    			System.out.println(allUsersTweets.get(i).get(0).getUser());
+                    	else if(commands[1].equals("following"))
+		                	for(int j = 0; j < following.size(); j++)
+		                	{
+		                		System.out.println(following.get(j));
+		                	}
                         break;
                     case "follow":
                         break;
                     case "unfollow":
+                    	if (commands[1].equals(""))
+                    		System.out.println("Invalid User");
                     	timeLine.remove(commands[1]);
+                    	int intialSize = following.size();
                     	for(int i = 0; i < following.size(); i++)
                     	{
                     		if(following.get(i).contains(commands[1]))
+                    		{
                     			following.remove(i);
-                    		else
+                    			break;
+                    		}
+                    		if(following.size() < intialSize)
+                    		{
                     			System.out.println("Warning: User not followed");
+                    			break;
+                    		}
                     	}
                         break;
                     case "search":
