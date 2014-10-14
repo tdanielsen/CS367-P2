@@ -80,7 +80,10 @@ class Timeline{
     	for(int i = 0; i < timeLine.size(); i++)
     	{
     		if (timeLine.get(i).getUser().equals(user))
+    		{
     			timeLine.remove(i);
+    			i--;
+    		}
     	}
     }
 

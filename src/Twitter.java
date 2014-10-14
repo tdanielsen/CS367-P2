@@ -113,8 +113,6 @@ public class  Twitter{
 		                    	{
 		                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
 		                    				timeLine.add(allUsersTweets.get(i));
-		                    		else
-		                    			System.out.println("Invalid User");
 		                    	}
                         break;
                     case "unfollow":
@@ -122,7 +120,7 @@ public class  Twitter{
                     	for (int i = 0; i < allUsersTweets.size(); i++)
                     	{
                     		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
-                    				check = true;
+                    			check = true;
                     	}
                     	if (!check)
                     	{

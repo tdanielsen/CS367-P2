@@ -24,10 +24,10 @@ public class TweeterTester {
 		Tweet tweet2 = new Tweet(8, "Helo World", "Jon");
 		Tweet tweet3 = new Tweet(23, "Hell World", "Zac");
 		Tweet tweet4 = new Tweet(11, "Hello World", "Tim");
-		Tweet tweet5 = new Tweet(90, "Hello World", "Peter");
+		Tweet tweet5 = new Tweet(90, "Hello World", "Tim");
 		Tweet tweet6 = new Tweet(24, "Helo World", "Jon");
 		Tweet tweet7 = new Tweet(25, "Hell World", "Zac");
-		Tweet tweet8 = new Tweet(7, "Hello World", "Tim");
+		Tweet tweet8 = new Tweet(12, "Hello World", "Tim");
 		Timeline tl = new Timeline();
 		List<Tweet> newList = new ArrayList<Tweet>();
 		newList.add(tweet);
@@ -37,7 +37,7 @@ public class TweeterTester {
 		newList.add(tweet7);
 		newList.add(tweet3);
 		newList.add(tweet5);
-		tl.add(newList);
+		
 //		tl.add(tweet3);
 //		tl.add(tweet);
 //		tl.add(tweet2);
@@ -45,13 +45,13 @@ public class TweeterTester {
 //		tl.add(tweet7);
 //		tl.add(tweet6);
 //		tl.add(tweet8);
-		//tl.add(new Tweet (3, "Hey", "Joe"));
+		tl.add(new Tweet (3, "Hey", "Joe"));
 
 		tl.add(tweet4);
-		tl.print();
-
+		tl.add(newList);
 		tl.remove("Jap");
-		//tl.print();
+		tl.remove("Tim");
+		tl.print();
 		//tl.print(3);
 		//tl.search("Hello").print();
 		
