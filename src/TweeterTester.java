@@ -12,7 +12,7 @@ public class TweeterTester {
 		test.add((E) "cat");
 		test.add((E) "matt");
 		//System.out.println(test.get(2));
-		System.out.println(test.remove(2));
+		System.out.println(test.remove(0));
 		test.add(1, (E) "tweet");
 		test.add(2, (E) "t");
 		System.out.println(test.get(0));
@@ -21,12 +21,12 @@ public class TweeterTester {
 		System.out.println(test.get(3));
 		System.out.println(test.isEmpty());
 		Tweet tweet = new Tweet(1, "Hello World", "Peter");
-		Tweet tweet2 = new Tweet(8, "Helo World", "Jon");
+		Tweet tweet2 = new Tweet(8, "Helo World", "Peter");
 		Tweet tweet3 = new Tweet(23, "Hell World", "Zac");
 		Tweet tweet4 = new Tweet(11, "Hello World", "Tim");
-		Tweet tweet5 = new Tweet(90, "Hello World", "Tim");
+		Tweet tweet5 = new Tweet(90, "Hello World", "Jon");
 		Tweet tweet6 = new Tweet(24, "Helo World", "Jon");
-		Tweet tweet7 = new Tweet(25, "Hell World", "Zac");
+		Tweet tweet7 = new Tweet(25, "Hell World", "Tim");
 		Tweet tweet8 = new Tweet(12, "Hello World", "Tim");
 		Timeline tl = new Timeline();
 		List<Tweet> newList = new ArrayList<Tweet>();
@@ -50,9 +50,9 @@ public class TweeterTester {
 		tl.add(tweet4);
 		tl.add(newList);
 		tl.remove("Jap");
-		tl.remove("Tim");
+		tl.remove("Peter");
 		tl.print();
-		//tl.print(3);
+		tl.print(91);
 		//tl.search("Hello").print();
 		
 

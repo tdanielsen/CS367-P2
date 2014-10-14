@@ -94,32 +94,36 @@ public class SimpleLinkedList<E> implements ListADT<E>
 		//If the item is at the beginning of the chain
 		if (pos - 1 < 0)
 		{
+			simpleList = curr.getNext();
 			curr.getNext().setPrev(null);
-			curr.setNext(curr.getNext());
 			numItems--;
+			return result;
 		}
-		//goes to the position in the chain to remove the item
-		for (int i = 0; i < pos - 1; i++)
-			curr = curr.getNext();
-		//if the item to be removed is at the end of the chain
-		if(pos == numItems - 1)
+		else
 		{
-			tail.setPrev(tail.getPrev());
-			curr.setNext(null);
-			numItems--;
-		}
-		//if the item is 1 before the end of the chain
-		else if(pos == numItems - 2)
-		{
-			tail.setPrev(tail.getPrev().getPrev());
+			//goes to the position in the chain to remove the item
+			for (int i = 0; i < pos - 1; i++)
+				curr = curr.getNext();
+			//if the item to be removed is at the end of the chain
+			if(pos == numItems - 1)
+			{
+				tail.setPrev(tail.getPrev());
+				curr.setNext(null);
+				numItems--;
+			}
+			//if the item is 1 before the end of the chain
+			else if(pos == numItems - 2)
+			{
+				tail.setPrev(tail.getPrev().getPrev());
+				curr.setNext(curr.getNext().getNext());
+				numItems--;
+			}
+			//all other cases
+			else
 			curr.setNext(curr.getNext().getNext());
 			numItems--;
+			return result;
 		}
-		//all other cases
-		else
-		curr.setNext(curr.getNext().getNext());
-		numItems--;
-		return result;
 	}
 	public int size()
 	{

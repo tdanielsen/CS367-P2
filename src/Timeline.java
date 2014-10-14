@@ -110,6 +110,7 @@ class Timeline{
      */
     public void print()
     {
+    	System.out.println(timeLine.size());
     	for(int i = 0; i < timeLine.size(); i++)
     		timeLine.get(i).print();
     }   
@@ -122,11 +123,14 @@ class Timeline{
     public void print(int time)
     {
     	int i = 0;
-    	while (timeLine.get(i).getTime() < time)
-    	{
-    		timeLine.get(i).print();
-    		i++;
-    	}
+    	if (timeLine.get(timeLine.size()).getTime() < time)
+    		print();
+    	else
+	    	while (timeLine.get(i).getTime() < time)
+	    	{
+	    		timeLine.get(i).print();
+	    		i++;
+	    	}
 		
     }
 
