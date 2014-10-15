@@ -123,7 +123,7 @@ class Timeline{
     public void print(int time)
     {
     	int i = 0;
-    	if (timeLine.get(timeLine.size()).getTime() < time)
+    	if (timeLine.get(timeLine.size() - 1).getTime() <= time)
     		print();
     	else
 	    	while (timeLine.get(i).getTime() < time)
