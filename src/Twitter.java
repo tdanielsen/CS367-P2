@@ -54,13 +54,13 @@ public class  Twitter{
 			//timeLine.print();
 			allUsersTweets.add(individualTweets);
 		}
-		for (int j = 0; j < allUsersTweets.size(); j++)
-		{
-			allUsersTweets.get(j).get(j);
-			for (int k = 0; k < allUsersTweets.get(j).size(); k++)
-				allUsersTweets.get(j).get(k).print();
-			System.out.println();
-		}
+//		for (int j = 0; j < allUsersTweets.size(); j++)
+//		{
+//			allUsersTweets.get(j).get(j);
+//			for (int k = 0; k < allUsersTweets.get(j).size(); k++)
+//				allUsersTweets.get(j).get(k).print();
+//			System.out.println();
+//		}
 		//fileReader
 		//bufferedreader
 		//while loop (while null)
@@ -107,12 +107,16 @@ public class  Twitter{
                     			System.out.println("Warning: User already followed");
                     			break;
                     		}
-                    		else
-		                    	for (int i = 0; i < allUsersTweets.size(); i++)
-		                    	{
-		                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
-		                    				timeLine.add(allUsersTweets.get(i));
-		                    	}
+                    	for (int i = 0; i < allUsersTweets.size(); i++)
+                    	{
+                    		
+                    		if (commands[1].equals(allUsersTweets.get(i).get(i).getUser()))
+                    		{
+                    			timeLine.add(allUsersTweets.get(i));
+                    			following.add(i, allUsersTweets.get(i).get(i).getUser());
+                    			break;
+                    		}
+                    	}
                         break;
                     case "unfollow":
                     	check = false;

@@ -23,6 +23,7 @@ class Timeline{
      */
     public void add(Tweet tweet)
     {
+//   	System.out.println(tweet.getTime());
     	if (timeLine.isEmpty())
     		timeLine.add(tweet);
     	else if (timeLine.size() == 1)
@@ -45,7 +46,7 @@ class Timeline{
     		while (high > low)
     			{
     				int midpoint = (high-low)/2 + low;
-//    				System.out.println(tweetTime);
+//    				System.out.println("Ingoing tweet time: " + tweetTime);
 //    				System.out.println("Midpoint: " + midpoint);
 //    				System.out.println("low: " + low);
 //    				System.out.println(timeLine.get(midpoint).getTime());
@@ -63,6 +64,8 @@ class Timeline{
     					low = midpoint;
     				if (tweetTime < midpointTime)
     					high = midpoint;
+    				if (tweetTime == midpointTime)
+    					break;
     			}
     	}
     }
@@ -88,7 +91,7 @@ class Timeline{
     	{
     		if (timeLine.get(i).getUser().equals(user))
     		{
-    			timeLine.get(i).print();
+//    			timeLine.get(i).print();
     			timeLine.remove(i);
     			i--;
     		}
@@ -118,7 +121,7 @@ class Timeline{
      */
     public void print()
     {
-    	System.out.println(timeLine.size());
+//    	System.out.println(timeLine.size());
     	for(int i = 0; i < timeLine.size(); i++)
     		timeLine.get(i).print();
     }   
