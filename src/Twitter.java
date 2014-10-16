@@ -17,14 +17,6 @@ public class  Twitter{
 
         // TODO *** steps 1 - 3 of the main method ***
     	Timeline timeLine = new Timeline();
-//    	Tweet tweet = new Tweet(1, "Hello World", "Peter");
-//		Tweet tweet2 = new Tweet(2, "Helo World", "Jon");
-//		Tweet tweet3 = new Tweet(4, "Hell World", "Zac");
-//		Tweet tweet4 = new Tweet(5, "Hello World", "Tim");
-//		timeLine.add(tweet2);
-//		timeLine.add(tweet);
-//		timeLine.add(tweet3);
-//		timeLine.add(tweet4);
 		List<String> following = new ArrayList<String>();
 		List<List<Tweet>> allUsersTweets = new ArrayList<List<Tweet>>();
 		//for loop args
@@ -61,6 +53,13 @@ public class  Twitter{
 			in.close();
 			//timeLine.print();
 			allUsersTweets.add(individualTweets);
+		}
+		for (int j = 0; j < allUsersTweets.size(); j++)
+		{
+			allUsersTweets.get(j).get(j);
+			for (int k = 0; k < allUsersTweets.get(j).size(); k++)
+				allUsersTweets.get(j).get(k).print();
+			System.out.println();
 		}
 		//fileReader
 		//bufferedreader

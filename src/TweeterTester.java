@@ -20,7 +20,7 @@ public class TweeterTester {
 		System.out.println(test.get(2));
 		System.out.println(test.get(3));
 		System.out.println(test.isEmpty());
-		Tweet tweet = new Tweet(1, "Hello World", "Peter");
+		Tweet tweet = new Tweet(2, "Hello World", "Peter");
 		Tweet tweet2 = new Tweet(8, "Helo World", "Peter");
 		Tweet tweet3 = new Tweet(23, "Hell World", "Zac");
 		Tweet tweet4 = new Tweet(11, "Hello World", "Tim");
@@ -51,6 +51,7 @@ public class TweeterTester {
 		tl.add(newList);
 		tl.remove("Jap");
 		tl.remove("Peter");
+		tl.add(new Tweet (1, "Hey", "Joe"));
 		tl.print();
 		tl.print(91);
 		//tl.search("Hello").print();
