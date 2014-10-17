@@ -1,8 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   ALL STUDENTS COMPLETE THESE SECTIONS
+// Main Class File:  Twitter.java
+// File:             Timeline.java
+// Semester:         CS367 Fall 2014
+//
+// Author:           Tim Danielsen
+// CS Login:         danielsen
+// Lecturer's Name:  J. Skrentny
+// Lab Section:      N/A
+//
+// Credits:          Peter Danielsen
+//////////////////////////// 80 columns wide //////////////////////////////////
 import java.util.List;
 
 /**
  * The Timeline class uses SimpleLinkedList to build a time ordered list of 
- * following tweets. Tweets with smaller Time fields should come earlier in the list.
+ * following tweets. Tweets with smaller Time fields come earlier in the list.
  */
 class Timeline{
 
@@ -23,47 +36,48 @@ class Timeline{
      */
     public void add(Tweet tweet)
     {
-//   	System.out.println(tweet.getTime());
+    	//if the timeline is empty, it just adds it into the list
     	if (timeLine.isEmpty())
     		timeLine.add(tweet);
-    	else if (timeLine.size() == 1)
-    		{
-    		if (tweet.getTime() > timeLine.get(0).getTime())
-    			timeLine.add(tweet);
-    		else
-    			timeLine.add(0, tweet);
-    		}
+    	//if the tweet's time being put in is larger than all other tweets,
+    	//then it is added at the end
     	else if (tweet.getTime() > timeLine.get(timeLine.size()-1).getTime())
     		timeLine.add(tweet);
+    	//if the tweet's time being put in is smaller than all other tweets,
+    	//then it is added at the beginning
     	else if (tweet.getTime() < timeLine.get(0).getTime())
     		timeLine.add(0, tweet);
+    	//all other cases
     	else
     	{
     		int low = 0;
     		int high = timeLine.size() - 1;
     		int tweetTime = tweet.getTime();
-    	
+    		//searches binarily for the right spot to put the tweet, divide and
+    		//conquer
     		while (high > low)
     			{
-    				int midpoint = (high-low)/2 + low;
-//    				System.out.println("Ingoing tweet time: " + tweetTime);
-//    				System.out.println("Midpoint: " + midpoint);
-//    				System.out.println("low: " + low);
-//    				System.out.println(timeLine.get(midpoint).getTime());
-//    				System.out.println("high: " + high);
-//    				System.out.println(timeLine.get(midpoint+1).getTime());
+    				//the "middle" of the list (reset every loop)
+    				int midpoint = (high - low) / 2 + low; 
+    				//the middle's time
     				int midpointTime = timeLine.get(midpoint).getTime();
+    				//sees if the new tweet should be added here and if it
+    				// should, ends the while loop
 					if (tweetTime > midpointTime
-						&& tweetTime < timeLine.get(midpoint+1).getTime())
+						&& tweetTime < timeLine.get(midpoint + 1).getTime())
 					{
 						timeLine.add(midpoint + 1, tweet);
-//						timeLine.get(midpoint + 1).print();
 						break;
 					}
+					//makes the search area half by moving the lower bounds
+					//to the midpoint 
     				if (tweetTime > midpointTime)
     					low = midpoint;
+    				//makes the search area half by moving the upper bounds
+					//to the midpoint 
     				if (tweetTime < midpointTime)
     					high = midpoint;
+    				//ends the while loop if the tweet time is already in play
     				if (tweetTime == midpointTime)
     					break;
     			}
@@ -87,11 +101,13 @@ class Timeline{
      */
     public void remove(String user)
     {
-    	for(int i = 0; i < timeLine.size(); i++)
+    	for (int i = 0; i < timeLine.size(); i++)
     	{
+    		//goes through the timeline to see what user made the tweet and, if
+    		//it was made by ther user being searched for, removes it from the
+    		//list
     		if (timeLine.get(i).getUser().equals(user))
     		{
-//    			timeLine.get(i).print();
     			timeLine.remove(i);
     			i--;
     		}
@@ -106,8 +122,9 @@ class Timeline{
      */
     public Timeline search(String keyword)
     {
-    	Timeline searchingLine = new Timeline();
-    	for(int i = 0; i < timeLine.size(); i++)
+    	// new timeline to store tweets for the return
+    	Timeline searchingLine = new Timeline(); 
+    	for (int i = 0; i < timeLine.size(); i++)
     	{
     		if (timeLine.get(i).getMessage().contains(keyword))
     			searchingLine.add(timeLine.get(i));
@@ -121,8 +138,7 @@ class Timeline{
      */
     public void print()
     {
-//    	System.out.println(timeLine.size());
-    	for(int i = 0; i < timeLine.size(); i++)
+    	for (int i = 0; i < timeLine.size(); i++)
     		timeLine.get(i).print();
     }   
     
@@ -134,6 +150,7 @@ class Timeline{
     public void print(int time)
     {
     	int i = 0;
+    	//if time is larger than the last tweet in the timeline, it calls print
     	if (timeLine.get(timeLine.size() - 1).getTime() <= time)
     		print();
     	else

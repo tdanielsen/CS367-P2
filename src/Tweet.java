@@ -14,8 +14,8 @@ class Tweet{
      */
     public Tweet(int time, String message, String user) throws TweetTooLongException
     {
-    	//makes sure there is valid input
-    	if(message.length() > 140)
+    	//makes sure message is a valid input
+    	if (message.length() > 140)
     		throw new TweetTooLongException("Tweet is over 140 charaters");
     	timeStamp = time;
     	this.message = message;
